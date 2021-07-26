@@ -6,7 +6,7 @@ const navbar = ({ handleManga, handleAnime }) => {
     return (
         <Navbar bg="dark" variant="dark" fixed="top">
             <Container>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand className="navbar-brand">
                     AnimeList
           </Navbar.Brand>
                 <Nav className="justify-content-end" defaultActiveKey="anime">

@@ -1,5 +1,4 @@
 import { Pagination } from 'react-bootstrap'
-import { useState } from 'react'
 
 
 const Paginationcomp = ({ handlePagination, active }) => {
@@ -14,8 +13,8 @@ const Paginationcomp = ({ handlePagination, active }) => {
         );
     }
     return (
-        <div>
-            <Pagination>{items}</Pagination>
+        <div className="pagination-container">
+            <Pagination style={{ "margin": "0px", "padding": "5rem", "justifyContent": "center" }}>{items}</Pagination>
         </div>
     )
 }

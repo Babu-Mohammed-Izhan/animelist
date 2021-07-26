@@ -1,4 +1,4 @@
-import { Card, Button } from 'react-bootstrap'
+import { Card, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { useState } from 'react'
 import Animemodal from './Modal'
 
@@ -13,18 +13,28 @@ const Mainpage = ({ animes }) => {
 
     return (
         <div className="container">
-            <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4">
+            <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4">
                 {animes.map((anime) => (
 
-                    <div className="col" key={anime.mal_id} onClick={() => {
+                    <div className="col cards" key={anime.mal_id} onClick={() => {
                         setAnimeid(anime.rank)
                         setModalShow(true)
                     }}
                         style={{ marginTop: '100px', borderRadius: '30px' }}
                     >
-                        <Card border="dark" text="white" className="card h-80 overflow-hidden" >
-                            <Card.Img variant="top" src={anime.image_url} className="image" />
-                        </Card>
+                        <OverlayTrigger
+                            key={anime.mal_id}
+                            placement='top'
+                            overlay={
+                                <Tooltip id={`tooltip-top`}>
+                                    {anime.title}
+                                </Tooltip>
+                            }
+                        >
+                            <Card className="h-100 bg-dark" style={{ "cursor": "pointer" }} >
+                                <Card.Img src={anime.image_url} />
+                            </Card>
+                        </OverlayTrigger>
                     </div>
                 ))
                 }

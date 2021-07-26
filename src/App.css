@@ -1,18 +1,19 @@
-.container {
-  min-width: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+
+.card-img {
+  cursor: pointer;
+  object-fit: cover;
+  height: 25rem;
 }
 
-.image {
-  max-height: 50px;
-  
+.cards {
+  cursor: pointer;
+  z-index: 1;
 }
 
-.card {
-  max-height: 50px;
-  margin-top: 30px;
-  background-color: #00000088;
+
+.pagination-container {
+  padding-bottom: 5rem;
+  min-height: 10vh;
 }
 

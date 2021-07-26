@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import Mainpage from './Mainpage'
 import axios from 'axios'
 import Paginationcomp from './Pagination';
+import './App.css'
 
 
 function App() {
