@@ -7,6 +7,7 @@ const Paginationcomp = ({ handlePagination, active }) => {
         items.push(
             <Pagination.Item key={number} active={number === active} onClick={() => {
                 handlePagination(number)
+                window.scrollTo(0, 0)
             }}>
                 {number}
             </Pagination.Item>,

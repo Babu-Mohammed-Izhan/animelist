@@ -12,21 +12,21 @@ const Mainpage = ({ animes }) => {
     const foundanime = animes.find(anime => { return anime.rank === Animeid })
 
     return (
-        <div className="container">
-            <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4">
+        <div className="container" id="mainpage">
+            <div className="row row-cols-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">
                 {animes.map((anime) => (
 
                     <div className="col cards" key={anime.mal_id} onClick={() => {
                         setAnimeid(anime.rank)
                         setModalShow(true)
                     }}
-                        style={{ marginTop: '100px', borderRadius: '30px' }}
+                        style={{ marginTop: '2rem', borderRadius: '30px' }}
                     >
                         <OverlayTrigger
                             key={anime.mal_id}
-                            placement='top'
+                            placement='bottom'
                             overlay={
-                                <Tooltip id={`tooltip-top`}>
+                                <Tooltip id="tooltip-bottom">
                                     {anime.title}
                                 </Tooltip>
                             }

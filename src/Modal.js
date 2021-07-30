@@ -21,7 +21,7 @@ const Animemodal = ({ show, onHide, anime }) => {
             </Modal.Header>
             <Modal.Body>
                 <h5>Rank: {anime.rank}</h5>
-                <h5>Start Date:  <h5>{anime.start_date}</h5></h5>
+                <h5>Start Date:  {anime.start_date}</h5>
                 <h5>End Date:{anime.end_date === null ? <div>Not Completed</div> : <div>{anime.end_date}</div>}</h5>
                 <h5>Members:{anime.members}</h5>
                 <h5>Score: {anime.score}</h5>

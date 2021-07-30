@@ -1,9 +1,12 @@
 
+#mainpage {
+  margin-top: 40px;
+}
 
 .card-img {
   cursor: pointer;
   object-fit: cover;
-  height: 25rem;
+  height: 40vh;
 }
 
 .cards {
