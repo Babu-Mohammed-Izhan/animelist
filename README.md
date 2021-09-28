@@ -2,7 +2,7 @@
 
 ## This website uses the Jikan third party API to display all the anime and all the details
 
-Link: https://frosty-mcnulty-ca0128.netlify.app/
+Link: https://izhananimelist.netlify.app/
 
 
 
