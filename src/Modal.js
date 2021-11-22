@@ -1,34 +1,53 @@
-import { Modal } from 'react-bootstrap'
-
+import { Modal } from "react-bootstrap";
 
 const Animemodal = ({ show, onHide, anime }) => {
+  if (anime === undefined) {
+    return <div></div>;
+  }
+  return (
+    <Modal
+      show={show}
+      onHide={onHide}
+      onClick={() => onHide()}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header>
+        <Modal.Title id="contained-modal-title-vcenter">
+          {anime.title}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="card-body card-grid ">
+          <div className="left-side">
+            <img
+              className="left-side-img"
+              src={anime.image_url}
+              alt="anime-poster"
+            />
+          </div>
+          <div className="right-side">
+            <h3>MAL-ID: {anime.mal_id}</h3>
+            <h3>{anime.rank ? `Rank: ${anime.rank}` : ""}</h3>
+            <h3>
+              Start Date:{""} {anime.start_date.split("T")[0]}
+            </h3>
+            <h3 className="end-date">
+              {`End Date: ${""} ${
+                anime.end_date === null
+                  ? "Not Completed"
+                  : anime.end_date.split("T")[0]
+              }`}
+            </h3>
+            <h3>Members:{anime.members}</h3>
+            <h3>Score: {anime.score}</h3>
+            <a href={anime.url}>Link to MyAnimeList</a>
+          </div>
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
+};
 
-    if (anime === undefined) {
-        return (<div></div>)
-    }
-    return (
-        <Modal
-            show={show}
-            onHide={onHide}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            <Modal.Header>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    {anime.title}
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <h5>Rank: {anime.rank}</h5>
-                <h5>Start Date:  {anime.start_date}</h5>
-                <h5>End Date:{anime.end_date === null ? <div>Not Completed</div> : <div>{anime.end_date}</div>}</h5>
-                <h5>Members:{anime.members}</h5>
-                <h5>Score: {anime.score}</h5>
-                <a href={anime.url}>Link to MyAnimeList</a>
-            </Modal.Body>
-        </Modal>
-    )
-}
-
-export default Animemodal
+export default Animemodal;
