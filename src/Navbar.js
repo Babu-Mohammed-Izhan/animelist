@@ -1,25 +1,50 @@
-import React from 'react'
-import { Navbar, Container, Nav } from 'react-bootstrap'
+import React, { useState } from "react";
+import { Navbar, Container, Nav, Form, Button } from "react-bootstrap";
 
-const navbar = ({ handleManga, handleAnime }) => {
+const Navigation = ({ handleManga, handleAnime, setSearch, animedata }) => {
+  const [input, setInput] = useState("");
 
-    return (
-        <Navbar bg="dark" variant="dark" fixed="top">
-            <Container>
-                <Navbar.Brand className="navbar-brand">
-                    AnimeList
-          </Navbar.Brand>
-                <Nav className="justify-content-end" defaultActiveKey="anime">
-                    <Nav.Item>
-                        <Nav.Link eventKey="anime" onSelect={handleAnime} >Anime</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link eventKey='manga' onSelect={handleManga} >Manga</Nav.Link>
-                    </Nav.Item>
-                </Nav>
-            </Container>
-        </Navbar >
-    )
-}
+  const handleSearch = (e) => {
+    setSearch(input);
+    setInput("");
+  };
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      setSearch(input);
+      setInput("");
+    }
+  };
 
-export default navbar
+  return (
+    <Navbar bg="dark" variant="dark" fixed="top">
+      <Container>
+        <Navbar.Brand className="navbar-brand">AnimeList</Navbar.Brand>
+        <Nav className="justify-content-end" defaultActiveKey="anime">
+          <Nav.Item>
+            <Nav.Link eventKey="anime" onSelect={handleAnime}>
+              Anime
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="manga" onSelect={handleManga}>
+              Manga
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <div className="nav">
+              <Form.Control
+                type="text"
+                placeholder={`Search for ${animedata.type} `}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => handleEnter(e)}
+              />
+            </div>
+          </Nav.Item>
+        </Nav>
+      </Container>
+    </Navbar>
+  );
+};
+
+export default Navigation;

@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import Navbar from "./Navbar";
 import Mainpage from "./Mainpage";
 import axios from "axios";
 import Paginationcomp from "./Pagination";
 import "./App.css";
+import Navigation from "./Navbar";
 
 function App() {
   const [animes, setanimes] = useState([]);
@@ -12,8 +13,9 @@ function App() {
     type: "anime",
     page: 1,
     subtype: "tv",
-    search: null,
   });
+
+  const [search, setSearch] = useState("");
 
   const [active, setActive] = useState(1);
 
@@ -25,50 +27,58 @@ function App() {
   };
 
   const searchData = async ({ type, search }) => {
-    if (search) {
-      const data = await axios.get(
-        `https://api.jikan.moe/v3/search/${type}?q=${search}`
-      );
-      console.log(data);
-      return data.data;
-    }
+    const data = await axios.get(
+      `https://api.jikan.moe/v3/search/${type}?q=${search}&page=${active}`
+    );
+    return data.data;
   };
   async function fetchanime() {
     const data = await getData(animedata);
     console.log(data);
     setanimes(data.top);
   }
+
   async function searchanime() {
-    const data = await searchData(animedata);
-    // console.log(data);
-    //setanimes(data.top);
+    if (search !== "") {
+      const data = await searchData({ type: animedata.type, search });
+      console.log(data);
+      setanimes(data.results);
+    }
   }
+
+  const handlePagination = (e) => {
+    setActive(e);
+    if (search === "") {
+      setAnimedata({ ...animedata, page: e });
+    }
+  };
 
   useEffect(() => {
     searchanime();
-  }, [animedata.search]);
+  }, [search, active]);
 
   useEffect(() => {
     fetchanime();
-  }, [animedata.type]);
+  }, [animedata]);
 
   return (
     <div className="App bg-dark">
-      <Navbar
+      <Navigation
         handleManga={(e) => {
           setAnimedata({ type: e, page: 1, subtype: e });
         }}
         handleAnime={(e) => {
           setAnimedata({ type: e, page: 1, subtype: "tv" });
         }}
-        setSearch={setAnimedata}
+        setSearch={(e) => {
+          setSearch(e);
+        }}
         animedata={animedata}
       />
       <Mainpage animes={animes} />
       <Paginationcomp
         handlePagination={(e) => {
-          setActive(e);
-          setAnimedata({ ...animedata, page: e });
+          handlePagination(e);
         }}
         active={active}
       />
