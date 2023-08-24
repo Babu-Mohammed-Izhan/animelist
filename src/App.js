@@ -35,7 +35,7 @@ function App() {
   async function fetchanime() {
     const data = await getData(animedata);
     console.log(data);
-    setanimes(data.top);
+    setanimes(data.data);
   }
 
   async function searchanime() {
@@ -46,7 +46,7 @@ function App() {
         subtype: animedata.subtype,
       });
       console.log(data);
-      setanimes(data.results);
+      setanimes(data.data);
     }
   }
 
