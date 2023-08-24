@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import { Navbar, Container, Nav, Form, Button } from "react-bootstrap";
+import { Navbar, Container, Nav, Form } from "react-bootstrap";
 
 const Navigation = ({ handleManga, handleAnime, setSearch, animedata }) => {
   const [input, setInput] = useState("");
 
-  const handleSearch = (e) => {
-    setSearch(input);
-    setInput("");
-  };
   const handleEnter = (e) => {
     if (e.key === "Enter") {
       setSearch(input);
