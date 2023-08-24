@@ -21,14 +21,14 @@ function App() {
 
   const getData = async ({ type, page, subtype }) => {
     const data = await axios.get(
-      `https://api.jikan.moe/v3/top/${type}/${page}/${subtype}`
+      `https://api.jikan.moe/v4/top/${type}/${page}/${subtype}`
     );
     return data.data;
   };
 
   const searchData = async ({ type, search }) => {
     const data = await axios.get(
-      `https://api.jikan.moe/v3/search/${type}?q=${search}&page=${active}`
+      `https://api.jikan.moe/v4/search/${type}?q=${search}&page=${active}`
     );
     return data.data;
   };
