@@ -21,14 +21,14 @@ function App() {
 
   const getData = async ({ type, page, subtype }) => {
     const data = await axios.get(
-      `https://api.jikan.moe/v4/top/${type}/${page}/${subtype}`
+      `https://api.jikan.moe/v4/top/${type}?type=${subtype}&page=${page}`
     );
     return data.data;
   };
 
-  const searchData = async ({ type, search }) => {
+  const searchData = async ({ type, search, subtype }) => {
     const data = await axios.get(
-      `https://api.jikan.moe/v4/search/${type}?q=${search}&page=${active}`
+      `https://api.jikan.moe/v4/${type}?q=${search}&page=${active}&type=${subtype}`
     );
     return data.data;
   };
@@ -40,7 +40,11 @@ function App() {
 
   async function searchanime() {
     if (search !== "") {
-      const data = await searchData({ type: animedata.type, search });
+      const data = await searchData({
+        type: animedata.type,
+        search,
+        subtype: animedata.subtype,
+      });
       console.log(data);
       setanimes(data.results);
     }
