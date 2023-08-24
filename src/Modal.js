@@ -23,7 +23,7 @@ const Animemodal = ({ show, onHide, anime }) => {
           <div className="left-side">
             <img
               className="left-side-img"
-              src={anime.image_url}
+              src={anime.images.jpg.large_image_url}
               alt="anime-poster"
             />
           </div>
@@ -31,13 +31,13 @@ const Animemodal = ({ show, onHide, anime }) => {
             <h3>MAL-ID: {anime.mal_id}</h3>
             <h3>{anime.rank ? `Rank: ${anime.rank}` : ""}</h3>
             <h3>
-              Start Date:{""} {anime.start_date.split("T")[0]}
+              Start Date:{""} {anime.aired.from.split("T")[0]}
             </h3>
             <h3 className="end-date">
               {`End Date: ${""} ${
-                anime.end_date === null
-                  ? "Not Completed"
-                  : anime.end_date.split("T")[0]
+                anime.aired.to === null
+                  ? "Still Airing"
+                  : anime.aired.to.split("T")[0]
               }`}
             </h3>
             <h3>Members:{anime.members}</h3>

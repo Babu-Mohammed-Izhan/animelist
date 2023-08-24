@@ -28,7 +28,7 @@ const Mainpage = ({ animes }) => {
               overlay={<Tooltip id="tooltip-bottom">{anime.title}</Tooltip>}
             >
               <Card className="h-100 bg-dark" style={{ cursor: "pointer" }}>
-                <Card.Img src={anime.image_url} />
+                <Card.Img src={anime.images.jpg.large_image_url} />
               </Card>
             </OverlayTrigger>
           </div>
